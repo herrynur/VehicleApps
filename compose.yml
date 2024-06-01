@@ -1,4 +1,4 @@
-services:
+services:    
     postgres:
         image: postgres:14
         ports:
@@ -8,6 +8,11 @@ services:
         - POSTGRES_PASSWORD=P0stgr3s
         volumes:
         - postgres:/var/lib/postgresql/data:delegated
+    backendservice:
+        image: BackendService
+        build:
+          context: .
+          dockerfile: BackendService/Dockerfile
 volumes:
     postgres: {}
 

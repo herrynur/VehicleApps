@@ -13,6 +13,25 @@ namespace BackendService.Controllers;
 [Authorize]
 public class BookingsController(IBookingService bookingService) : ControllerBase
 {
+    /// <summary>
+    /// Api to get All Bookings
+    /// </summary>
+    /// <remarks>
+    /// Use PaginationFilter to get paginated data with Parameters PageNumber and PageSize,
+    /// example:
+    /// 
+    ///     {BaseUrl}Bookings?PageNumber=1&amp;PageSize=10
+    ///     
+    /// Use Query to search data with Parameters query,
+    /// example:
+    /// 
+    ///     {BaseUrl}Bookings?PageNumber=1&amp;PageSize=10&amp;Query=mandiri
+    ///     
+    /// </remarks>
+    /// <param name="filter"></param>
+    /// <param name="status"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpGet]
     public async Task<ActionResult<PaginatedList<BookingReadDto>>> GetBookingsAsync(
         [FromQuery] PaginationFilter filter,
@@ -22,6 +41,18 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
         return await bookingService.GetBookingsAsync(filter, status, cancellationToken);
     }
 
+    /// <summary>
+    /// Get Single Booking
+    /// </summary>
+    /// <remarks>
+    /// Use id from Bookings data in path to get single data using GET Method, example:
+    /// 
+    ///     {BaseUrl}Bookings/cdf76df8-d15c-4a0b-9c77-ec50dead8dac
+    ///     
+    /// </remarks>
+    /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpGet("{id}")]
     public async Task<ActionResult<BookingReadDto>> GetBookingByIdAsync(
         [FromRoute] Guid id,
@@ -37,6 +68,12 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
         return result;
     }
 
+    /// <summary>
+    /// Post Booking
+    /// </summary>
+    /// <param name="bookingWriteDto"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<ActionResult<BookingReadDto>> CreateBookingAsync(
         [FromBody] BookingWriteDto bookingWriteDto,
