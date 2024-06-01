@@ -6,6 +6,7 @@ using BackendService.Application.Login.Service;
 using BackendService.Application.MsUsers.Service;
 using BackendService.Application.SignUp.Service;
 using BackendService.Application.Vehicles.Service;
+using BackendService.Application.VehicleUsages.Service;
 using BackendService.Helper.Authorization;
 using BackendService.Helper.Swagger;
 using BackendService.Infrastructure.Persistence;
@@ -46,6 +47,7 @@ namespace BackendService
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IApprovalService, ApprovalService>();
+            services.AddScoped<IVehicleUsageService, VehicleUsageService>();
 
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

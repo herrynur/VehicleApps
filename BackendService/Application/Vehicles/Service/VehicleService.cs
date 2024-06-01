@@ -22,7 +22,7 @@ public class VehicleService(ApplicationContext context) : IVehicleService
 
         var query = VehicleQuery();
 
-        var totalRecords = await query.CountAsync();
+        var totalRecords = await query.CountAsync(cancellationToken);
 
         var vehicles = await query
             .ProjectToType<VehicleReadDto>()

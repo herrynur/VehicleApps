@@ -10,4 +10,5 @@ public class Vehicle : EntityBase
     public string? VehicleNumber { get; set; }
     public VehicleStatus Status { get; set; }
     public VehicleType Type { get; set; }
+    public ICollection<VehicleUsage> VehicleUsages { get; set; } = [];
 }

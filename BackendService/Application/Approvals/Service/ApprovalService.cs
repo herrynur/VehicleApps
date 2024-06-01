@@ -16,9 +16,9 @@ public class ApprovalService(ApplicationContext context,
     {
         var booking = await context.Bookings.FirstOrDefaultAsync(x => x.Id == approvalWriteDto.BookingId, cancellationToken);
 
-        if (booking == null)
+        if (booking is null)
         {
-            throw new NotFoundException("Booking not found");
+            throw new NotFoundException("Booking");
         }
 
         var approval = approvalWriteDto.Adapt<Approval>();
@@ -48,9 +48,9 @@ public class ApprovalService(ApplicationContext context,
     {
         var booking = context.Bookings.AnyAsync(x => x.Id == approvalWriteDto.BookingId, cancellationToken);
 
-        if (booking == null)
+        if (booking is null)
         {
-            throw new NotFoundException("Booking not found");
+            throw new NotFoundException("Booking");
         }
 
         var approval = approvalWriteDto.Adapt<Approval>();
