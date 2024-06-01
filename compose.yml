@@ -1,0 +1,13 @@
+services:
+    postgres:
+        image: postgres:14
+        ports:
+        - 5432:5432
+        environment:
+        - POSTGRES_USER=user123
+        - POSTGRES_PASSWORD=P0stgr3s
+        volumes:
+        - postgres:/var/lib/postgresql/data:delegated
+volumes:
+    postgres: {}
+
