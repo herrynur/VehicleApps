@@ -9,10 +9,12 @@ services:
         volumes:
         - postgres:/var/lib/postgresql/data:delegated
     backendservice:
-        image: BackendService
+        image: backendservice:latest
         build:
           context: .
           dockerfile: BackendService/Dockerfile
+        ports:
+        - 8080:8080
 volumes:
     postgres: {}
 
